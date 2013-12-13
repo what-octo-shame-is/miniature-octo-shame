@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	
+<h:head>
+<!-- 	<link href="${facesContext.externalContext.requestContextPath}/resources/style/style.css" rel="stylesheet" type="text/css"/> -->
+
+</h:head>
+<h:body>
+	<h:form>
+
+  <center>
+  <p:commandLink action="#{controllerCreneau.seDeconnecter}" immediate="true" style="float:right;"
+								>
+								<h:graphicImage style="border:0" value="/images/deconnecter.png" />
+								</p:commandLink>
+	<p:panel>
+	
+	<p:dock position="top">  
+    <p:menuitem value="Module" icon="/images/dock/C1.png" url="ListeModule.xhtml"/>  
+    <p:menuitem value="Prestation" icon="/images/dock/C2.png" url="ListePrestation.xhtml"/>  
+    <p:menuitem value="Creneau" icon="/images/dock/C3.png" url="ListCreneau.xhtml"/>  
+    <p:menuitem value="Groupe" icon="/images/dock/C4.png" url="ListeGroupe.xhtml"/>  
+    <p:menuitem value="Admin" icon="/images/dock/C5.png" url="listeAdmin.xhtml"/>  
+    <p:menuitem value="Enseignant" icon="/images/dock/C6.png" url="ListEns.xhtml"/>  
+    <p:menuitem value="Gérération selon Enseignant" icon="/images/dock/C7.png" url="Solveur.xhtml"/>  
+    <p:menuitem value="Gérération selon Groupe" icon="/images/dock/C7.png" url="SolveurGr.xhtml"/>  
+   <p:menuitem value="resolution" icon="/images/dock/C7.png" url="Solveur.xhtml"/>  
+    
+</p:dock>
+</p:panel>
+</center>
+<h:outputLabel value="Bienvenue Mr L'administrateur :  #{controllerAdmin.tNomAdmin()}" style=" color: blue; left:10px ; top:120px " /><h:outputLabel value="#{controllerAdmin.admin.nomAdmin}" />
+<br />
+<br />
+<br />
+
+<br /><br />
+
+
+<p:panel style="position: absolute; left:10px; top:130px;" >
+
+<p:clock pattern="HH:mm" mode="server" /> 
+<br /> 
+<br />
+
+<p:calendar value="#{calendarBean.date1}" mode="inline" id="inlineCal"/>   
+
+</p:panel>
+
+
+<br /> 
+<br />
+<br /> 
+<br />
+<br /> 
+<br />
+<br /> 
+<br />
+<br /> 
+<br />
+<br /> 
+<br />
+<br /> 
+
+<br /> 
+ 
+
+ <center>
+	
+	
+	<p:dock  >  
+    <p:menuitem value="Module" icon="/images/dock/C1.png" url="ListeModule.xhtml"/>  
+    <p:menuitem value="Prestation" icon="/images/dock/C2.png" url="ListePrestation.xhtml"/>  
+    <p:menuitem value="Creneau" icon="/images/dock/C3.png" url="ListCreneau.xhtml"/>  
+    <p:menuitem value="Groupe" icon="/images/dock/C4.png" url="ListeGroupe.xhtml"/>  
+    <p:menuitem value="Admin" icon="/images/dock/C5.png" url="listeAdmin.xhtml"/>  
+    <p:menuitem value="Enseignant" icon="/images/dock/C6.png" url="ListEns.xhtml"/>  
+    <p:menuitem value="Emploi" icon="/images/dock/C7.png" url="sch.xhtml"/>  
+</p:dock>
+
+</center>
+
+
+
+
+
+
+		
+		
+		
+		
+	</h:form>
+</h:body>
+
+</html>
+

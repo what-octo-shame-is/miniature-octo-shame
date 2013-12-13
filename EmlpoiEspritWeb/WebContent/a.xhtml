@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+	
+	<ui:composition template="template/Design2.xhtml">
+	<ui:define name="content">
+<h:head>
+	<link href="${facesContext.externalContext.requestContextPath}/resources/style/style.css" rel="stylesheet" type="text/css"/>
+<f:loadBundle basename="#{LanguageBean.currentLanguage}"
+				var="message" />
+
+</h:head>
+<h:body><h2>
+			
+
+<h:form >
+<p:dialog header="affectation" widgetVar="affectation" 
+			resizable="true" id="editP" modal="true">
+			<ui:repeat value="#{controllerAffectation.msg}" var="item">
+			<ui:repeat value="#{item}" var="content">
+				<h:outputText value="${content}" />
+				<br />
+			</ui:repeat>
+		</ui:repeat>
+			</p:dialog>
+			
+			
+			<p:dialog header="resolution" widgetVar="resolution"
+			resizable="true" id="edit" modal="true">
+			<ui:repeat value="#{resoudre.s}" var="item">
+			<ui:repeat value="#{item}" var="content">
+				<h:outputText value="${content}" />
+				<br />
+			</ui:repeat>
+		</ui:repeat>
+		<ui:repeat value="#{resoudre.l}" var="item">
+			<ui:repeat value="#{item}" var="content">
+				<h:outputText value="${content}" />
+				<br />
+			</ui:repeat>
+		</ui:repeat>
+		<ui:repeat value="#{resoudre.m}" var="item">
+			<ui:repeat value="#{item}" var="content">
+				<h:outputText value="${content}" />
+				<br />
+			</ui:repeat>
+		</ui:repeat>
+			</p:dialog>
+			
+			<p:dialog header="verification" widgetVar="verification"
+			resizable="true" id="editVerif" modal="true">
+			<ui:repeat value="#{resoudre.message}" var="item">
+			<ui:repeat value="#{item}" var="content">
+				<h:outputText value="${content}" />
+				<br />
+			</ui:repeat>
+		</ui:repeat>
+		<ui:repeat value="#{resoudre.list}" var="item">
+			<ui:repeat value="#{item}" var="content">
+				<h:outputText value="${content}" />
+				<br />
+			</ui:repeat>
+		</ui:repeat>
+	
+			</p:dialog>
+			
+	<p:panel>
+<p:commandLink action="#{controllerCreneau.seDeconnecter}" immediate="true" style="float:right;"
+								>
+								<h:graphicImage style="border:0" value="/images/deconnecter.png" />
+								</p:commandLink>
+	 
+  
+   
+<center>
+<p:breadCrumb>  
+    <p:menuitem value="Categories" url="exemple.xhtml" />  
+    <p:menuitem value="Acceuil" url="exemple.xhtml" />  
+    <p:menuitem value="Enseignants" url="ListEns.xhtml" />  
+    <p:menuitem value="Admin" url="listeAdmin.xhtml" />  
+       <p:menuitem value="Module" url="ListeModule.xhtml" />  
+    <p:menuitem value="Prestation" url="ListePrestation.xhtml" />  
+      <p:menuitem value="Groupe" url="ListeGroupe.xhtml" />  
+    <p:menuitem value="Creneau" url="ListCreneau.xhtml" />
+    <p:menuitem value="Emplois des enseignants" url="Solveur.xhtml" />  
+    <p:menuitem value="Emlpoi des groupes" url="SolveurGr.xhtml" />  
+ 
+</p:breadCrumb>  
+ </center>           		
+			
+			<p:panel header="Affectation">
+<p:commandButton value="affecter" 
+actionListener="#{controllerAffectation.AffecterCrenauToPrestation()}" update="editP" oncomplete="affectation.show()"/><br/><br/><br/>
+<p:commandButton value="Verifier" 
+actionListener="#{resoudre.verifierCoherenceEDT()}" update="editVerif" oncomplete="resolution.show()"
+ /><br/><br/><br/>
+ <p:commandButton value="resoudre" 
+actionListener="#{resoudre.resoudreEDT()}" update="edit" oncomplete=" verification.show()"
+ />
+ <p:stack icon="/images/stack/stack.png">  
+    <p:menuitem value="Disponibilté_Enseignant" icon="/images/stack/aperture.png" url="Disponibilte.xhtml"/>  
+    <p:menuitem value="Disponibilté_Groupe" icon="/images/stack/photoshop.png" url="DisponibilteGroupe.xhtml"/>  
+   
+</p:stack> 
+
+</p:panel>
+
+   </p:panel>
+   
+</h:form></h2>
+</h:body></ui:define></ui:composition>
+</html>

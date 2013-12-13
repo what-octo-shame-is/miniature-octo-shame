@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:composition template="template/design8.xhtml">
+	<ui:define name="content">
+	
+<h:head>
+<f:loadBundle basename="#{LanguageBean.currentLanguage}"
+				var="message" />
+<link href="${facesContext.externalContext.requestContextPath}/resources/style/style3.css" rel="stylesheet" type="text/css"/>
+</h:head>
+<h:body>
+
+ 
+
+	<h:form><h3>
+	
+<p:commandLink action="#{controllerCreneau.seDeconnecter}" immediate="true" style="float:right;"
+								>
+								<h:graphicImage style="border:0" value="/images/deconnecter.png" />
+								</p:commandLink>
+	 
+  
+   
+<center>
+<p:breadCrumb>  
+    <p:menuitem value="Categories" url="exemple.xhtml" />  
+    <p:menuitem value="#{message.Acceuil}" url="EspaceAdmin.xhtml" />  
+    <p:menuitem value="#{message.ens}" url="ListEns.xhtml" />  
+    <p:menuitem value="Admin" url="listeAdmin.xhtml" />  
+    <p:menuitem value="Prestation" url="ListePrestation.xhtml" />  
+    <p:menuitem value="#{message.creneau}" url="ListCreneau.xhtml" />
+    <p:menuitem value="#{message.E}" url="SolveurGr.xhtml" />  
+    <p:menuitem value="#{message.S}" url="Solveur.xhtml" />  
+    <p:menuitem value="Module" url="ListeModule.xhtml" />  
+    <p:menuitem value="#{message.group}" url="ListeGroupe.xhtml" /> 
+</p:breadCrumb>  
+ </center>    
+		<p:panel header="#{message.d}">
+
+
+			<br />
+			<br> </br>
+			<p:outputLabel>#{message.V}</p:outputLabel>
+			<br />
+
+			<p:messages id="messages" />
+			<h:panelGrid columns="2">
+				<h:outputLabel for="name" value="#{message.h}" />
+
+				<p:selectOneMenu
+					value="#{moduleControl.controllersGr.selectedGroupe}" effect="fade">
+					<f:selectItem itemLabel="Select One"
+						itemValue="#{moduleControl.controllersGr.nouvGroupe}"/>
+					<f:selectItems value="#{moduleControl.controllersGr.listeGroupe}"
+						var="gr" itemLabel="#{gr.libelle} (#{gr.id})" itemValue="#{gr.id}" />
+					
+				</p:selectOneMenu>
+				
+					<br/>
+
+			</h:panelGrid>
+			<p:commandButton value="#{message.générer}" action="/scheduleGroupe.xhtml" ajax="false"/>
+		</p:panel></h3>
+		
+		<p:stack icon="/images/stack/stack.png">  
+    <p:menuitem value="#{message.Disponibilté_Enseignant}" icon="/images/stack/aperture.png" url="Disponibilte.xhtml"/>  
+    <p:menuitem value="#{message.Disponibilté_Groupe}" icon="/images/stack/photoshop.png" url="DisponibilteGroupe.xhtml"/>  
+   
+</p:stack> 
+	</h:form>
+</h:body></ui:define></ui:composition>
+</html>

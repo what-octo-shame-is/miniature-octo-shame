@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#AuthentificationAdmin.xhtml"
+  PATH="/AuthentificationAdmin.xhtml" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#AuthentificationAdmin.xhtml:0" NAME="item"
+   PATH="/AuthentificationAdmin.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="yess::#exemple.xhtml" NAME="output"
+    PATH="/exemple.xhtml" TARGET="rules:#exemple.xhtml" TITLE="yess" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="noo::#erreur.xhtml" NAME="output1"
+    PATH="/erreur.xhtml" TARGET="rules:#erreur.xhtml" TITLE="noo" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#AuthentificationEnseignant.xhtml"
+  PATH="/AuthentificationEnseignant.xhtml" SHAPE="32,161,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#AuthentificationEnseignant.xhtml:0"
+   NAME="item" PATH="/AuthentificationEnseignant.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="noo::#erreur.xhtml" NAME="output"
+    PATH="/erreur.xhtml" TARGET="rules:#erreur.xhtml" TITLE="noo" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="yesEns::#EspaceEnseignant.xhtml"
+    NAME="output1" PATH="/EspaceEnseignant.xhtml"
+    TARGET="rules:#EspaceEnseignant.xhtml" TITLE="yesEns" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#exemple.xhtml" PATH="/exemple.xhtml"
+  SHAPE="256,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#EspaceEnseignant.xhtml"
+  PATH="/EspaceEnseignant.xhtml" SHAPE="256,321,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#erreur.xhtml" PATH="/erreur.xhtml"
+  SHAPE="256,177,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="template/Design5.xhtml">
+	<ui:define name="content">
+
+<h:head>
+<f:loadBundle basename="#{LanguageBean.currentLanguage}"
+				var="message" />
+	<title>Gestion de groupe</title>
+	<link rel="stylesheet" href="css/style.css " />
+	<link href="${facesContext.externalContext.requestContextPath}/resources/style/style2.css" rel="stylesheet" type="text/css"/>
+</h:head>
+<h:body>
+<h:form>
+				<p:spacer width="1100" height="20" />
+
+				<h:commandLink action="#{LanguageBean.setLanguagetoFrench}">
+					<h:graphicImage value="/images/f.png" />
+				</h:commandLink>
+				<h:commandLink action="#{LanguageBean.setLanguagetoEnglish()}">
+					<h:graphicImage value="/images/ang.png" />
+				</h:commandLink>
+			</h:form>
+<h:form>
+<p:panel>	
+
+<h2>
+<p:commandLink action="#{controllerCreneau.seDeconnecter}" immediate="true" style="float:right;"
+								>
+								<h:graphicImage style="border:0" value="/images/deconnecter.png" />
+								</p:commandLink>
+
+  
+
+<center>
+<p:breadCrumb>  
+    <p:menuitem value="Categories" url="#" />  
+    <p:menuitem value="Module" url="ListeModule.xhtml" />  
+    <p:menuitem value="#{message.ens}" url="ListEns.xhtml" />  
+    <p:menuitem value="Admin" url="listeAdmin.xhtml" />  
+    <p:menuitem value="Prestation" url="ListePrestation.xhtml" />  
+    <p:menuitem value="#{message.creneau}" url="ListCreneau.xhtml" />
+    <p:menuitem value="#{message.emploi}" url="sch.xhtml" />  
+
+ 
+</p:breadCrumb> 
+<h:form>
+		
+	</h:form>
+ 
+ </center>    
+
+<h:outputLabel value="#{message.listGr}   " style=" color: blue ; left:10px ; top:120px " /></h2>
+	<br />
+	
+	<h:form id="a">
+		<p:growl id="growl" showDetail="true" sticky="false" /><h1>
+		<p:dataTable var="admin" value="#{controllerGroupe.listeGroupe}"
+			 id="AjoutTab"
+			 widgetVar="AdminTable"
+			emptyMessage="Groupe non trouvé" paginator="true" rows="5"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="5,6,10"
+			style="width:600px;font-size:13px;margin-left: 150px">
+			
+			
+			<f:facet name="header">
+				<p:outputPanel>
+					<h:outputText value="#{message.Recherche}" />
+					<p:inputText id="globalFilter" onkeyup="AdminTable.filter()"
+						style="width:80px" />
+				</p:outputPanel>
+			</f:facet>
+			
+			
+			<p:column id="id" headerText="ID" filterBy="#{admin.code}" filterMatchMode="exact" footerText=" ID exacte">
+				<h:outputText value="#{admin.id}" />
+			</p:column>
+			<p:column headerText="Libelle" id="Libelle" filterBy="#{admin.libelle}" filterMatchMode="contains" footerText="contient">
+				<h:outputText value="#{admin.libelle}" />
+			</p:column>
+			<p:column headerText="filiere" id="filiere" filterBy="#{admin.filiere}" filterMatchMode="contains" footerText="contient">
+				<h:outputText value="#{admin.filiere}" />
+			</p:column>
+			<p:column headerText="#{message.sale}" id="salePrincipale" filterBy="#{admin.salePrincipale}" filterMatchMode="contains" footerText="contient">
+				<h:outputText value="#{admin.salePrincipale}" />
+			</p:column>
+					
+		</p:dataTable></h1>
+		
+	</h:form>	
+	</p:panel>
+</h:form>
+	
+	
+	
+	
+	
+<p:stack icon="/images/stack/stack.png">  
+    <p:menuitem value="#{message.Disponibilté_Enseignant}" icon="/images/stack/aperture.png" url="Disponibilte.xhtml"/>  
+    <p:menuitem value="#{message.Disponibilté_Groupe}" icon="/images/stack/photoshop.png" url="DisponibilteGroupe.xhtml"/>  
+   
+</p:stack> <h:form ><h:commandLink action="#{controllerPDFgr.PDF()}" immediate="true" >
+					<h:graphicImage style="border:0" value="/images/pdf.png" />
+				</h:commandLink></h:form> 
+</h:body>
+</ui:define></ui:composition>
+</html>

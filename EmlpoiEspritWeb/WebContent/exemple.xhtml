@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+<f:view contentType="text/html">
+	<h:head>
+	<f:loadBundle basename="#{LanguageBean.currentLanguage}"
+				var="message" />
+	</h:head>
+	<h:body>
+		<p:layout fullPage="true"><br/>
+
+			<!--   ********************* layout de menu ****************************** -->
+<h2><b><i>
+			<p:layoutUnit id="top" position="north" size="100" >
+			
+				
+
+					<h:outputLabel value="#{message.welcome}  #{controllerAdmin.tNomAdmin()}" style=" color: #003C80; left:10px ; top:120px " /><h:outputLabel value="#{controllerAdmin.admin.nomAdmin}" />
+			<h:form>
+				<p:spacer width="1250" height="60" />
+
+				<h:commandLink action="#{LanguageBean.setLanguagetoFrench}">
+					<h:graphicImage value="/images/f.png" />
+				</h:commandLink>
+				<h:commandLink action="#{LanguageBean.setLanguagetoEnglish()}">
+					<h:graphicImage value="/images/ang.png" />
+				</h:commandLink>
+			</h:form>
+			</p:layoutUnit></i>
+</b>
+</h2>
+			<!--   ********************* layout au dessous ****************************** -->
+
+			
+
+
+			<!--   ********************* layout au gche ****************************** -->
+
+			<p:layoutUnit id="left" position="west" size="300" resizable="true"
+				closable="true" collapsible="true" header="Options" minSize="200">
+				<p:accordionPanel>
+					<p:tab title="#{message.c}">
+						<br />
+						<p:calendar mode="inline" navigator="none" style="width: 5px" />
+						<br />
+					</p:tab>
+
+					<p:tab title="#{message.pdf}">
+					<form>
+					<h:commandLink action="ListGroupe.xhtml" value="" />
+					</form>
+					
+						<h:graphicImage value="/images/p.png" />
+						<h:outputText value="Menu 2 Content" />
+
+
+
+					</p:tab>
+
+				</p:accordionPanel>
+			</p:layoutUnit>
+
+
+			<!--   ********************* layout au dte ****************************** -->
+
+			<p:layoutUnit id="right" position="east" size="250" header="#{message.esprit}"
+				resizable="true" closable="true" collapsible="true"
+				style="text-align:center">
+				<h:graphicImage value="/images/E1.png" />
+				<p:lightBox style="text-align:center;margin-top:20px;">
+					<h:outputLink value="#{request.contextPath}/images/E2.png"
+						title="Noël" style="margin-bottom:5px;">
+						<h:graphicImage value="/images/E2.png"  />
+					</h:outputLink>
+
+					<h:outputLink value="#{request.contextPath}/images/E3.png"
+						title="SaintValentin" style="margin-bottom:2px;">
+						<h:graphicImage value="/images/E3.png" />
+					</h:outputLink>
+
+					<h:outputLink value="#{request.contextPath}/images/E4.png"
+						title="Halloween" style="margin-bottom:2px;">
+						<h:graphicImage value="/images/E4.png" />
+					</h:outputLink>
+
+					
+				</p:lightBox>
+				<br></br>
+				<br></br>
+			
+				<p:media
+					value="http://www.tulumba.com/mp3/ferdiozbegen/cansuyum/track%2003.mp3"
+					width="200" height="50" player="quicktime">
+					<f:param name="autoPlay" value="false" />
+				</p:media>
+
+
+
+
+			</p:layoutUnit>
+
+
+
+
+			<!--   ********************* layout au center ****************************** -->
+	<h2>
+			<p:layoutUnit id="center" position="center" size="1000">
+				<h:form >
+					<p:menubar>
+
+						<p:submenu label="Resolution" icon="ui-icon-disk">
+
+							<p:menuitem value="Affectation" style="" url="a.xhtml" />
+							<p:menuitem value="Verification" url="a.xhtml" />
+							<p:menuitem value="Resolution" url="a.xhtml" />
+							<p:separator />
+
+							<p:menuitem value="Quit" url="Acceuil.xhtml" />
+						</p:submenu>
+
+						<p:submenu label="Generation" icon="ui-icon-document">
+							<p:submenu label="#{message.selon}" icon="ui-icon-contact">
+								<p:menuitem value="#{message.group}" url="SolveurGr.xhtml" />
+								<p:menuitem value="#{message.ens}" url="Solveur.xhtml" />
+							</p:submenu>
+
+							<p:separator />
+							<p:menuitem value="Quit" url="Acceuil.xhtml" />
+						</p:submenu>
+						
+						<p:submenu label="#{message.dispo}" icon="ui-icon-document">
+							<p:menuitem value="#{message.group}" url="DisponibilteGroupe.xhtml" />
+							<p:menuitem value="#{message.ens}" url="Disponibilte.xhtml" />
+							<p:separator />
+							<p:menuitem value="Quit" url="Acceuil.xhtml" />
+						</p:submenu>
+						
+						<p:submenu label="#{message.Ges}" icon="ui-icon-gear">
+							<p:submenu label="#{message.list}" icon="ui-icon-contact">
+								<p:menuitem value="#{message.ad}" url="listeAdmin.xhtml" />
+								<p:menuitem value="#{message.creneau}" url="ListCreneau.xhtml" />
+								<p:menuitem value="#{message.ens}" url="ListEns.xhtml" />
+								<p:menuitem value="Module" url="ListeModule.xhtml" />
+								<p:menuitem value="Prestation" url="ListePrestation.xhtml" />
+								<p:menuitem value="#{message.group}" url="ListeGroupe.xhtml" />
+							</p:submenu>
+
+							<p:separator />
+							<p:menuitem value="Quit" url="Acceuil.xhtml" />
+						</p:submenu>
+
+
+						<p:menuitem value="Quit" url="Acceuil.xhtml" icon="ui-icon-close" />
+					</p:menubar>
+<center>
+				<h:graphicImage value="/images/EsAd.PNG" />
+			<br></br>	<br></br><center>
+			</center>
+				</center>
+				</h:form>
+			</p:layoutUnit></h2>
+
+		</p:layout>
+	</h:body>
+</f:view>
+</html>

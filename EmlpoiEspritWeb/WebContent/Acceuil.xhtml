@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<p:panel>
+<ui:composition template="template/Commonlayout1.xhtml">
+	<ui:define name="content">
+		<h:head>
+			<link
+				href="${facesContext.externalContext.requestContextPath}/resources/style/style2.css"
+				rel="stylesheet" type="text/css" />
+			<f:loadBundle basename="#{LanguageBean.currentLanguage}"
+				var="message" />
+		</h:head>
+		<h:body>
+			<h:form>
+				<p:spacer width="900" height="20" />
+
+				<h:commandLink action="#{LanguageBean.setLanguagetoFrench}">
+					<h:graphicImage value="/images/f.png" />
+				</h:commandLink>
+				<h:commandLink action="#{LanguageBean.setLanguagetoEnglish()}">
+					<h:graphicImage value="/images/ang.png" />
+				</h:commandLink>
+			</h:form>
+
+			<h:form id="form"><h3>
+
+				<center>
+					<p:spacer width="20" />
+					<center>
+
+						<h2>
+							<h:outputLabel value="#{message.va}"
+								style=" color: #000768 ; left:10px ; top:120px " />
+						</h2>
+
+
+						<h:graphicImage style="border:0" value="/images/admin2.PNG" />
+				<h:commandLink value="#{message.ad}"
+							action="AuthentificationAdmin.xhtml"
+							style=" color: #000768 " />	
+
+						<p:spacer width="200" />
+						<h:graphicImage style="border:0" value="/images/Ens4.png" />
+					<h:commandLink value="#{message.ens}"
+							action="AuthentificationEnseignant.xhtml"
+							style=" color: #000768   " />	
+					</center>
+
+
+					<p:spacer width="160"></p:spacer>
+				</center></h3>
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>
+</p:panel>
+</html>

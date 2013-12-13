@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="template/design8.xhtml">
+	<ui:define name="content">
+	
+<h:head>
+<f:loadBundle basename="#{LanguageBean.currentLanguage}"
+				var="message" />
+<link href="${facesContext.externalContext.requestContextPath}/resources/style/style3.css" rel="stylesheet" type="text/css"/>
+</h:head>
+<h:body>
+<h:form>
+				<p:spacer width="1100" height="00" />
+
+				<h:commandLink action="#{LanguageBean.setLanguagetoFrench}">
+					<h:graphicImage value="/images/f.png" />
+				</h:commandLink>
+				<h:commandLink action="#{LanguageBean.setLanguagetoEnglish()}">
+					<h:graphicImage value="/images/ang.png" />
+				</h:commandLink>
+			</h:form>
+
+	<h:form><h2>
+
+<p:commandLink action="#{controllerCreneau.seDeconnecter}" immediate="true" style="float:right;">
+								<h:graphicImage style="border:0" value="/images/deconnecter.png" />
+								</p:commandLink>
+
+<center>
+<p:breadCrumb>  
+    <p:menuitem value="Categories" url="#" />  
+    <p:menuitem value="#{message.Acceuil}" url="EspaceAdmin.xhtml" />  
+    <p:menuitem value="#{message.ens}" url="ListEns.xhtml" />  
+    <p:menuitem value="Admin" url="listeAdmin.xhtml" />  
+    <p:menuitem value="Prestation" url="ListePrestation.xhtml" />  
+    <p:menuitem value="#{message.creneau}" url="ListCreneau.xhtml" />
+    <p:menuitem value="#{message.E}" url="SolveurGr.xhtml" />  
+    <p:menuitem value="#{message.S}" url="Solveur.xhtml" />  
+    <p:menuitem value="Module" url="ListeModule.xhtml" />  
+    <p:menuitem value="#{message.group}" url="ListeGroupe.xhtml" /> 
+</p:breadCrumb>  
+ </center>  
+ <h:form>
+				<p:spacer width="1100" height="20" />
+
+				
+			</h:form>     
+		<p:panel header="#{message.gen}">
+			<br />
+			
+			<p:outputLabel>#{message.V}</p:outputLabel>
+			<br /><br />
+
+			<p:messages id="messages" />
+			<h:panelGrid columns="2">
+				<h:outputLabel for="name" value="#{message.g}" />
+
+				<p:selectOneMenu
+					value="#{moduleContr.controllers.selectedEnseignant}" effect="fade">
+					<f:selectItem itemLabel="Select One" itemValue="#{moduleContr.controllers.nouvEns}"/>
+					<f:selectItems value="#{moduleContr.controllers.listeEns}" var="ens" itemLabel="#{ens.nom} (#{ens.id})" itemValue="#{ens.id}" />
+				
+				</p:selectOneMenu>
+				
+					<br/>
+
+			</h:panelGrid>
+			<p:commandButton value="#{message.générer}" action="/sch.xhtml" ajax="false"/>
+		</p:panel>
+		<p:stack icon="/images/stack/stack.png">  
+    <p:menuitem value="#{message.Disponibilté_Enseignant}" icon="/images/stack/aperture.png" url="Disponibilte.xhtml"/>  
+    <p:menuitem value="#{message.Disponibilté_Groupe}" icon="/images/stack/photoshop.png" url="DisponibilteGroupe.xhtml"/>  
+   
+</p:stack> 
+		</h2>
+	</h:form>
+</h:body></ui:define></ui:composition>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+	
+	<ui:composition template="template/Design7.xhtml">
+	<ui:define name="content">
+
+	
+<h:head>
+
+	<link href="${facesContext.externalContext.requestContextPath}/resources/style/style4.css" rel="stylesheet" type="text/css"/>
+<f:loadBundle basename="#{LanguageBean.currentLanguage}"
+				var="message" />
+</h:head>
+<h:body>
+<h:form>
+				<p:spacer width="1100" height="20" />
+
+				<h:commandLink action="#{LanguageBean.setLanguagetoFrench}">
+					<h:graphicImage value="/images/f.png" />
+				</h:commandLink>
+				<h:commandLink action="#{LanguageBean.setLanguagetoEnglish()}">
+					<h:graphicImage value="/images/ang.png" />
+				</h:commandLink>
+			</h:form>
+<form>
+
+<p:panel>
+
+<h2>
+<p:commandLink action="#{controllerCreneau.seDeconnecter}" immediate="true" style="float:right;"
+								>
+								<h:graphicImage style="border:0" value="/images/deconnecter.png" />
+								</p:commandLink>
+	 
+
+   
+<center>
+<p:breadCrumb>  
+    <p:menuitem value="Categories" url="#" />  
+    <p:menuitem value="#{message.Acceuil}" url="EspaceAdmin.xhtml" />  
+    <p:menuitem value="#{message.ens}" url="ListEns.xhtml" />  
+    <p:menuitem value="Admin" url="listeAdmin.xhtml" />  
+    <p:menuitem value="Prestation" url="ListePrestation.xhtml" />  
+    <p:menuitem value="#{message.creneau}" url="ListCreneau.xhtml" />
+    <p:menuitem value="Module" url="ListeModule.xhtml" />  
+
+   
+ 
+</p:breadCrumb>  <br/>
+ </center>        
+
+
+	<!-- 	***************     ************** boutton d'ajouter *************    ************* -->
+
+	<h:form id="AjoutP">
+		<p:commandButton value="#{message.add}" icon="ui-icon-adds"
+			actionListener="#{controllerAdmin.ajouterAdminweb()}"
+			update=":edit:editP" oncomplete="adminAjout.show()"  style=" color : blue"/>
+	</h:form>
+	<br />
+
+
+
+	<h:form id="a">
+		<p:growl id="growl" showDetail="true" sticky="false" />
+		<p:dataTable var="admin" value="#{controllerAdmin.listeAdminis}"
+			id="AjoutTab" widgetVar="AdminTable" emptyMessage="Admin non trouvÃ©"
+			paginator="true" rows="5"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="5,6,10"
+			style="width:700px;font-size:13px;margin-left: 150px">
+
+
+			<f:facet name="header">
+				<p:outputPanel>
+					<h:outputText value="#{message.Recherche}" />
+					<p:inputText id="globalFilter" onkeyup="AdminTable.filter()"
+						style="width:80px" />
+				</p:outputPanel>
+			</f:facet>
+
+
+			<p:column id="id" headerText="ID" filterBy="#{admin.id}"
+				filterMatchMode="exact" footerText=" ID exacte">
+				<h:outputText value="#{admin.id}" />
+			</p:column>
+			<p:column headerText="#{message.n}" id="nom" filterBy="#{admin.nomAdmin}"
+				filterMatchMode="contains" footerText="contient">
+				<h:outputText value="#{admin.nomAdmin}" />
+			</p:column>
+			<p:column headerText="Login" id="login" filterBy="#{admin.login}"
+				filterMatchMode="contains" footerText="contient">
+				<h:outputText value="#{admin.login}" />
+			</p:column>
+			<p:column headerText="Password" id="password"
+				filterBy="#{admin.password}" filterMatchMode="contains"
+				footerText="contient">
+				<h:outputText value="#{admin.password}" />
+			</p:column>
+
+			<p:column style="width:4%">
+				<p:commandButton id="Editer" update=":Actualise:displaye"
+					icon="ui-icon-arrowrefresh-1-w" oncomplete="personneEdit.show();"
+					actionListener="#{controllerAdmin.editEvent(admin.id)}"
+					title="Editer" />
+
+			</p:column>
+
+
+			<p:column style="width:4%">
+				<p:commandButton id="Supprimer" update=":a:AjoutTab, :a:growl"
+					icon="ui-icon-trash" immediate="true" title="Supprimer"
+					action="#{controllerAdmin.deleteAdminweb(admin) }"
+					onclick="if(confirm('Voulez-vous confirmer la suppression ?') == false ) return false;" />
+			</p:column>
+
+
+		</p:dataTable><h:commandLink action="#{controllerPDFad.PDF()}" immediate="true" >
+					<h:graphicImage style="border:0" value="/images/pdf.png" />
+				</h:commandLink>
+				
+	</h:form>
+</h2>
+</p:panel>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- 	***************     ************** forme d' AJOUTER *************    ************* -->
+
+	<h:form id="edit">
+		<p:dialog header="Ajout d'administrateur" widgetVar="adminAjout"
+			resizable="false" id="editP" modal="true">
+			<p:growl id="growl" showDetail="true" sticky="false" life="10000" />
+			<h:panelGrid id="display" columns="2" cellpadding="4"
+				style="margin:0 auto;">
+				<f:facet name="header">
+					<h:outputLabel value="ESPRIT" />
+				</f:facet>
+           <h:outputLabel for="ID" title="ID" value="ID"
+					style="color: crimson;" />
+				<h:inputText value="#{controllerAdmin.admin.id}" id="ID" />
+
+
+				<h:outputLabel for="nom" value="#{message.n}" style="color: crimson;" />
+				<h:inputText value="#{controllerAdmin.admin.nomAdmin}" id="nom" />
+
+				<h:outputLabel for="login" title="Nom" value="Login"
+					style="color: crimson;" />
+				<h:inputText value="#{controllerAdmin.admin.login}" id="login" />
+
+				<h:outputLabel for="password" title="Nom" value="Password"
+					style="color: crimson;" />
+				<h:inputText value="#{controllerAdmin.admin.password}" id="password" />
+
+			</h:panelGrid>
+			<p:separator />
+			<p:commandButton value="#{message.Enregistrer}" update=":a:AjoutTab, growl"
+				actionListener="#{controllerAdmin.ajouterAdminweb() }"
+				oncomplete="adminAjout.hide()" />
+		</p:dialog>
+	</h:form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- 	***************     ************** forme d' MODIFIER *************    ************* -->
+	<h:form id="Actualise">
+		<p:dialog header="Modification" widgetVar="personneEdit"
+			resizable="false" id="editPer" modal="true">
+			<p:growl id="growl" showDetail="true" sticky="false" />
+			<h:panelGrid id="displaye" columns="2" cellpadding="4"
+				style="margin:0 auto;">
+
+				<f:facet name="header">
+					<h:outputLabel value="ESPRIT" />
+				</f:facet>
+
+				<h:outputLabel for="nomHra" value="#{message.n}" style="color: crimson;" />
+				<h:inputText value="#{controllerAdmin.admin.nomAdmin}" id="nomHra" />
+
+				<h:outputLabel for="login" title="Nom" value="Login"
+					style="color: crimson;" />
+				<h:inputText value="#{controllerAdmin.admin.login}" id="login" />
+
+				<h:outputLabel for="password" title="Nom" value="Password"
+					style="color: crimson;" />
+				<h:inputText value="#{controllerAdmin.admin.password}" id="password" />
+
+			</h:panelGrid>
+			<p:separator />
+			<p:commandButton value="Enregistrer" update=":a:AjoutTab, growl"
+				actionListener="#{controllerAdmin.edition(actionEvent) }"
+				oncomplete="personneEdit.hide()" />
+
+		</p:dialog>
+	
+	</h:form>
+		
+	
+</h:body></ui:define></ui:composition>
+</html>

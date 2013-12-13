@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report9" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="af5dac06-c8ea-4565-8caf-0cadc2e232cf">
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[select * from prestation]]>
+	</queryString>
+	<field name="codeCl" class="java.lang.String"/>
+	<field name="codeModule" class="java.lang.String"/>
+	<field name="numSemestre" class="java.math.BigDecimal"/>
+	<field name="anneeDeb" class="java.lang.String"/>
+	<field name="ENSEIGNANT_ID_ENS" class="java.lang.String"/>
+	<field name="CRENEAU_NUMERO" class="java.math.BigDecimal"/>
+	<field name="MODULE_codeModule" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement uuid="1efda46a-91c9-4c2f-be94-6ba2e407b169" x="275" y="0" width="300" height="64"/>
+				<imageExpression><![CDATA["leaf_banner_violet.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="7a5ba35f-cf24-47fe-a872-9aa5bc9a2e00" style="Title" x="0" y="13" width="263" height="33"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Leaf Violet Title]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e6d268c5-21b8-4bba-82fe-d5ffef720a11" style="SubTitle" x="63" y="46" width="200" height="22"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Leaf Violet SubTitle]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement uuid="123c4b06-2787-4135-ab36-3f0cc1c7b968" positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="4b334859-cca9-4b58-a5a3-e66b90a72383" style="Column header" x="0" y="19" width="79" height="15"/>
+				<textElement/>
+				<text><![CDATA[codeCl]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ca8c0370-6416-4dc4-ba8a-00ae46ab5211" style="Column header" x="79" y="19" width="79" height="15"/>
+				<textElement/>
+				<text><![CDATA[codeModule]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ffd6349d-ab42-4770-86f9-0c2e4152cd2d" style="Column header" x="158" y="19" width="79" height="15"/>
+				<textElement/>
+				<text><![CDATA[numSemestre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="92e8bc48-b49d-4c97-9a19-6014d3698efa" style="Column header" x="237" y="19" width="79" height="15"/>
+				<textElement/>
+				<text><![CDATA[anneeDeb]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2f0d665d-200a-4d9d-b217-0972914131f6" style="Column header" x="316" y="19" width="79" height="15"/>
+				<textElement/>
+				<text><![CDATA[ENSEIGNANT_ID_ENS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="85e84dcf-d00c-4166-be37-e149dc0f0e1e" style="Column header" x="395" y="19" width="79" height="15"/>
+				<textElement/>
+				<text><![CDATA[CRENEAU_NUMERO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d1662949-b5be-4a3e-9cce-7fdf6a05e6bc" style="Column header" x="474" y="19" width="79" height="15"/>
+				<textElement/>
+				<text><![CDATA[MODULE_codeModule]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement uuid="4f0e4bd9-ba6d-479c-88f4-8a333fc1cef0" positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="03f8432b-e122-41e9-a3b8-3c6b96d387c3" style="Detail" x="0" y="0" width="79" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{codeCl}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="16852b2b-2784-4fe2-8f64-afa0a60ba6f8" style="Detail" x="79" y="0" width="79" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{codeModule}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ec6706d7-c51e-48f0-a24c-558d31b26e11" style="Detail" x="158" y="0" width="79" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{numSemestre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cd78fe34-a2b1-416b-af89-4d27f295a873" style="Detail" x="237" y="0" width="79" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{anneeDeb}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0be2d726-93ee-49db-8a9c-d3cd7c3906ad" style="Detail" x="316" y="0" width="79" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ENSEIGNANT_ID_ENS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="004e8720-807e-42f3-bafd-18922a9f1746" style="Detail" x="395" y="0" width="79" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CRENEAU_NUMERO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8bec0a72-3191-4142-ae07-44eb2dd99480" style="Detail" x="474" y="0" width="79" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{MODULE_codeModule}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement uuid="5707e6fa-76ed-47ff-8d4b-4450355f3bbd" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="53c9e4ad-6e9e-4e75-ab08-bfb3649d57f8" style="Column header" x="433" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="bfb773de-5109-4209-a18d-8ad7dc5ec2c3" style="Column header" x="513" y="0" width="40" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="82f701cc-fbd6-402d-a050-1163329a1985" style="Column header" x="0" y="0" width="197" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+<ui:composition template="template/Commonlayout1.xhtml">
+	<ui:define name="content">
+		<f:loadBundle basename="#{LanguageBean.currentLanguage}"
+				var="message" />
+	<h:head>
+	<link
+				href="${facesContext.externalContext.requestContextPath}/resources/style/style3.css"
+				rel="stylesheet" type="text/css" />
+	</h:head><body>
+	
+	
+	<h:form>
+				<p:spacer width="900" height="20" />
+
+				<h:commandLink action="#{LanguageBean.setLanguagetoFrench}">
+					<h:graphicImage value="/images/f.png" />
+				</h:commandLink>
+				<h:commandLink action="#{LanguageBean.setLanguagetoEnglish()}">
+					<h:graphicImage value="/images/ang.png" />
+				</h:commandLink>
+			</h:form>
+	</body>
+		<h:form id="form">
+			<center>
+				<p:spacer width="50" />
+				<center>
+				<h:graphicImage style="border:0" value="/images/login.png" />
+			</center>
+			<p:growl id="growl" showDetail="true" life="3000" /> 
+					<p:panelGrid columns="2" style="width:600px">
+						<f:facet name="header"> 
+authentification 
+</f:facet>
+<h:outputLabel for="login" value="Login:" style="font-weight:bold ; color: #000768 ; left:10px ; top:120px" />
+<p:selectOneMenu
+					value="#{controllerSchEns.selectedEns}" effect="fade">
+					<f:selectItem itemLabel="Select One" itemValue="#{controllerSchEns.nouvEns}"/>
+					<f:selectItems value="#{controllerSchEns.listeEns}" var="ense" itemLabel="#{ense.nom}" itemValue="#{ense.loginEns}" />
+					
+				</p:selectOneMenu>
+				
+				
+<h:outputLabel for="password" value="Password:" style="font-weight:bold ; color: #000768 ; left:10px ; top:120px"/>
+<p:password id="password" value="#{controllerSchEns.password}" required="true" label="password" />
+<f:facet name="footer">
+
+<center>
+<h3><p:commandButton id="saveButton" value="se connecter" action="#{controllerSchEns.authentif()}" 
+event="click" style="font-weight:bold ; color: #000768 "></p:commandButton></h3>
+</center>
+</f:facet>
+
+
+</p:panelGrid>
+<p:spacer width="160"></p:spacer>
+</center>
+</h:form>
+</ui:define>
+</ui:composition>
+</html>

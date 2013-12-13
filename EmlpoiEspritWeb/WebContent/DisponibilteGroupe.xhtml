@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+	
+	<ui:composition template="template/Design3.xhtml">
+	<ui:define name="content">
+
+<h:head>
+<f:loadBundle basename="#{LanguageBean.currentLanguage}"
+				var="message" />
+<link href="${facesContext.externalContext.requestContextPath}/resources/style/style.css" rel="stylesheet" type="text/css"/>
+</h:head>
+<h:body>
+	<h:form>
+		<p:panel><h2>
+			<p:commandLink action="#{controllerCreneau.seDeconnecter}"
+				immediate="true" style="float:right;">
+				<h:graphicImage style="border:0" value="/images/deconnecter.png" />
+			</p:commandLink>
+<h:form>
+				<p:spacer width="1000" height="20" />
+
+				<h:commandLink action="#{LanguageBean.setLanguagetoFrench}">
+					<h:graphicImage value="/images/f.png" />
+				</h:commandLink>
+				<h:commandLink action="#{LanguageBean.setLanguagetoEnglish()}">
+					<h:graphicImage value="/images/ang.png" />
+				</h:commandLink>
+			</h:form>
+
+
+			<center>
+				<p:breadCrumb>
+					<p:menuitem value="Categories" url="#" />
+					<p:menuitem value="#{message.Acceuil}" url="EspaceAdmin.xhtml" />
+					<p:menuitem value="#{message.ens}" url="ListEns.xhtml" />
+					<p:menuitem value="#{message.ad}" url="listeAdmin.xhtml" />
+					<p:menuitem value="Prestation" url="ListePrestation.xhtml" />
+					<p:menuitem value="#{message.creneau}" url="ListCreneau.xhtml" />
+					<p:menuitem value="#{message.DispoEns}" url="Disponibilte.xhtml" />
+				</p:breadCrumb>
+					
+		
+		
+			<p:panel header="#{message.DispoGr}">
+			<br />
+			<center>
+				
+					<h:outputLabel value="#{message.choisir3}" /><br/><br/> 
+				<p:selectOneMenu value="#{controllerDisponibilite.selectedGroupe}"
+					effect="fade">
+					<f:selectItem itemLabel="Select One"
+						itemValue="#{controllerDisponibilite.groupe}" />
+					<f:selectItems value="#{controllerDisponibilite.groupes}" var="gr"
+						itemLabel="#{gr.libelle} (#{gr.code})" itemValue="#{gr.code}" />
+				</p:selectOneMenu>
+				<br />
+				<br />
+				
+					<h:outputLabel value="#{message.choisir2}" /><br/><br/>
+				<p:selectOneMenu value="#{controllerDisponibilite.selectedCreneau}"
+					effect="fade">
+					<f:selectItem itemLabel="Select One"
+						itemValue="#{controllerDisponibilite.cre}" />
+					<f:selectItems value="#{controllerDisponibilite.listCreneau}"
+						var="cren" itemLabel="#{cren.jour} (#{cren.plageHoraire})"
+						itemValue="#{cren.numero}" />
+				</p:selectOneMenu>
+				
+				<br />
+				
+				<br />
+				<br/>
+				<p:commandButton value="#{message.verif}"
+					action="#{controllerDisponibilite.DispnibleGroupe}" ajax="false" />
+					<h:outputLabel value="#{controllerDisponibilite.msgGr}" style=" color: #E60110 ; left:10px ; top:120px " />
+				<br/><br/>
+			</center>
+			<p:dialog header="resolution" widgetVar="abonAjout" resizable="true"
+				id="editP" modal="true">
+				<br />
+				<h1><h:outputLabel value="#{controllerDisponibilite.msgGr}" style=" color: #800000 ; left:10px ; top:120px " /></h1>
+			
+			</p:dialog></p:panel></center>
+			</h2>
+		</p:panel>	
+	</h:form>
+</h:body></ui:define></ui:composition>
+</html>

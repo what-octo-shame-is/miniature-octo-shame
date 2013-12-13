@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<f:loadBundle basename="resources.messages1_en" var="bundle"/>
+	<f:loadBundle basename="resources.messages1_fr" var="bundle"/>
+	
+<body>
+	<ui:composition>
+		<center>
+	
+			
+			
+			<p:menubar autoSubmenuDisplay="True">
+				<p:menuitem value="#{bundle['room_management']}" url="ListesdesSalles.xhtml"
+					icon="ui-icon-search" />
+				<p:menuitem value="#{bundle['class_management']}" url="Listedesclasses.xhtml"
+					icon="ui-icon-search" />
+
+				<p:menuitem value="#{bundle['teacher_management']}" url="ListeEnsegniant.xhtml"
+					icon="ui-icon-person" />
+				<p:menuitem value="#{bundle['course_management']}" url="ListCours.xhtml"
+					icon="ui-icon-person" />
+				<p:menuitem value="#{bundle['students_management']}" url="Listetudiants.xhtml"
+					icon="ui-icon-person" />
+			</p:menubar>
+             
+
+
+		</center>
+	</ui:composition>
+</body>
+</html>
+
+

@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+	
+	<ui:composition template="template/Design6.xhtml">
+	<ui:define name="content">
+
+	
+<h:head>
+<f:loadBundle basename="#{LanguageBean.currentLanguage}"
+				var="message" />
+
+	<title>Gestion de Module </title>
+	<link rel="stylesheet" href="css/style.css " />
+	<link href="${facesContext.externalContext.requestContextPath}/resources/style/style2.css" rel="stylesheet" type="text/css"/>
+</h:head>
+<h:body>
+<form >
+
+</form>
+<p:panel><h2>
+<p:commandLink action="#{controllerCreneau.seDeconnecter}" immediate="true" style="float:right;"
+								>
+								<h:graphicImage style="border:0" value="/images/deconnecter.png" />
+								</p:commandLink>
+	 
+  
+<center>
+<p:breadCrumb>  
+    <p:menuitem value="Categories" url="#" />  
+    <p:menuitem value="#{message.Acceuil}" url="EspaceAdmin.xhtml" />  
+    <p:menuitem value="#{message.ens}" url="ListEns.xhtml" />  
+    <p:menuitem value="Admin" url="listeAdmin.xhtml" />  
+    <p:menuitem value="Prestation" url="ListePrestation.xhtml" />  
+    <p:menuitem value="#{message.creneau}" url="ListCreneau.xhtml" />
+    <p:menuitem value="#{message.emploi}" url="sch.xhtml" />  
+    <p:menuitem value="Module" url="ListeModule.xhtml" />  
+ 
+</p:breadCrumb>  
+ </center>            
+		<h:form>
+				<p:spacer width="1100" height="20" />
+
+				<h:commandLink action="#{LanguageBean.setLanguagetoFrench}">
+					<h:graphicImage value="/images/f.png" />
+				</h:commandLink>
+				<h:commandLink action="#{LanguageBean.setLanguagetoEnglish()}">
+					<h:graphicImage value="/images/ang.png" />
+				</h:commandLink>
+			</h:form>	
+			
+<h:outputLabel value="#{message.listM}  " style=" color: #00378A; left:10px ; top:120px " />
+	
+	<h:form id="a"> 
+  
+
+		<p:growl id="growl" showDetail="true" sticky="false" />
+		<p:dataTable var="admin" value="#{controllerModule.listeModule}"
+			 id="AjoutTab"
+			 widgetVar="AdminTable"
+			emptyMessage="#{message.Ntrouve}" paginator="true" rows="5"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="5,6,10"
+			style="width:600px;font-size:13px;margin-left: 150px">
+			
+
+			<f:facet name="header">
+				<p:outputPanel>
+					<h:outputText value="#{message.Recherche}" />
+					<p:inputText id="globalFilter" onkeyup="AdminTable.filter()"
+						style="width:80px "  />
+				</p:outputPanel>
+			</f:facet>
+			
+			
+			<p:column id="id" headerText="ID" filterBy="#{admin.id}" filterMatchMode="exact" footerText=" ID exacte">
+				<h:outputText value="#{admin.id}" />
+			</p:column>
+			<p:column headerText="designation" id="Libelle" filterBy="#{admin.designation}" filterMatchMode="contains" footerText="contient">
+				<h:outputText value="#{admin.designation}" />
+			</p:column>
+			<p:column headerText="#{message.nbHeures}" id="filiere" filterBy="#{admin.nbHeures}" filterMatchMode="contains" footerText="contient">
+				<h:outputText value="#{admin.nbHeures}" />
+			</p:column>
+									
+		</p:dataTable><h:commandLink action="#{controllerPDF.PDF()}" immediate="true" >
+					<h:graphicImage style="border:0" value="/images/pdf.png" />
+				</h:commandLink>
+	
+	</h:form>
+		
+	
+<p:stack icon="/images/stack/stack.png">  
+    <p:menuitem value="#{message.Disponibilté_Enseignant}" icon="/images/stack/aperture.png" url="Disponibilte.xhtml"/>  
+    <p:menuitem value="#{message.Disponibilté_Groupe}" icon="/images/stack/photoshop.png" url="DisponibilteGroupe.xhtml"/>  
+   
+</p:stack>
+
+	
+	</h2>
+</p:panel></h:body>
+</ui:define>
+</ui:composition>
+</html>

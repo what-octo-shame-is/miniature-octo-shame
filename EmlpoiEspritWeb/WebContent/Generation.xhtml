@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui"
+xmlns:ui="http://java.sun.com/jsf/facelets">
+
+   <f:view contentType="text/html">
+        <h:head>
+        
+        </h:head>
+    <h:body>
+
+ <!--   ********************* layout au gche ****************************** --> 
+  
+                <p:layoutUnit id="left" position="west" size="300" resizable="true" closable="true" collapsible="true" header="Options" minSize="200">
+                    <p:accordionPanel>
+                        <p:tab title="Calendrier">
+                            <br />
+                            <p:calendar mode="inline" navigator="none" style="width: 5px"/>
+                            <br />
+                        </p:tab>
+
+                        <p:tab title="Listes PDF">
+                        <h:graphicImage value="/images/word.png"/>
+                            <h:outputText value="Menu 2 Content" />
+                       
+                      
+        
+                        </p:tab>
+
+                    </p:accordionPanel>
+                </p:layoutUnit>
+</h:body>
+</f:view>
+</html>

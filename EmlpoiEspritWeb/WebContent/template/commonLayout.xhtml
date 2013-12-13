@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<h:outputStylesheet name="common-style.css" library="css" />
+		 
+	</h:head>
+    <h:body>
+    <center>
+  <h:panelGrid width="1000" >
+  <p:panel>
+  <center>
+				<p:panel  >
+					<p:carousel itemStyleClass="carItem" pageLinks="4" 
+						autoPlayInterval="6000" rows="1" effect="easeInStrong"
+						circular="true">
+						<p:graphicImage value="/images/esp3.png" width="1000" height="100" />
+						<p:graphicImage value="/images/esp4.png" width="1000" height="100"  />
+						<p:graphicImage value="/images/esprit44.png" width="1000" height="100"  />
+					</p:carousel>
+				</p:panel>
+			</center>
+	<div id="page">
+		<div id="header">
+			<ui:insert name="header" >
+				<ui:include src="/template/commonHeader.xhtml" />
+			</ui:insert>
+	    </div>
+	    
+	    <div id="content">
+		   	<ui:insert name="content" >
+		   		<ui:include src="/template/commonContent.xhtml" />
+		   
+		   	</ui:insert>
+	    </div>
+		    
+	    <div id="footer">
+	    	<ui:insert name="footer" >
+	    		<ui:include src="/template/commonFooter.xhtml" />
+	    	</ui:insert>
+    	</div>
+    	
+    </div>
+    </p:panel>
+   </h:panelGrid>
+      </center>
+    </h:body>
+
+</html>

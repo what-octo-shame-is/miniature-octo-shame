@@ -1,0 +1,10 @@
+@CHARSET "ISO-8859-1";
+.fc-header, .fc-day-number, .fc-sun, .fc-event-time{
+	visibility: hidden;
+}
+.fc-content{
+	width:80%;
+	left:100px;
+	height:300px;
+}
+body {background-color:#549DD5;}

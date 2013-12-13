@@ -49,24 +49,37 @@
 				minSize="200">
 
 				<h:form id="a">
-					<p:accordionPanel value="#{controllerGroupe.listeModule}" var="Groupe" id="accordionGroupes">
-<!-- 						<p:ajax event="tabChange" listener="#{bean.onChange}" /> -->
-						<p:tab title="#{Groupe.toString()}" id="tabAccordionGroupe">
-<!-- 								<p:growl id="growl" showDetail="true" sticky="false" /> -->
-<!-- 								<p:dataTable id="AjoutTab" value="#{controllerGroupe.listeModule}" var="liste" widgetVar="AdminTable"> -->
-<!-- 									<p:column id="columnGroupe" sortBy="liste" > -->
-<!-- 										<p:dataTable id="dataTab2" value="#{liste}" var="test"> -->
-<!-- 											<p:column> -->
-												<h:outputText id="valeurDataTab2" value="#{Groupe.toString()}" />
-<!-- 											</p:column> -->
-<!-- 										</p:dataTable> -->
-<!-- 									</p:column> -->
-<!-- 								</p:dataTable> -->
+<!-- 					<p:accordionPanel value="#{controllerGroupe.listeModule}" var="Groupe" id="accordionGroupes"> -->
+<!-- <!-- 						<p:ajax event="tabChange" listener="#{bean.onChange}" /> --> -->
+<!-- 						<p:tab title="#{Groupe.toString()}" id="tabAccordionGroupe"> -->
+<!-- <!-- 								<p:growl id="growl" showDetail="true" sticky="false" /> --> -->
+<!-- <!-- 								<p:dataTable id="AjoutTab" value="#{controllerGroupe.listeModule}" var="liste" widgetVar="AdminTable"> --> -->
+<!-- <!-- 									<p:column id="columnGroupe" sortBy="liste" > --> -->
+<!-- <!-- 										<p:dataTable id="dataTab2" value="#{liste}" var="test"> --> -->
+<!-- <!-- 											<p:column> --> -->
+<!-- 												<h:outputText id="valeurDataTab2" value="#{Groupe.toString()}" /> -->
+<!-- <!-- 											</p:column> --> -->
+<!-- <!-- 										</p:dataTable> --> -->
+<!-- <!-- 									</p:column> --> -->
+<!-- <!-- 								</p:dataTable> --> -->
 							
+<!-- 						</p:tab> -->
+
+<!-- 						</p:accordionPanel> -->
+					<p:accordionPanel value="#{controllerGroupe.listeGroupe}"
+						var="Groupe">
+						<p:tab title="#{Groupe.id}">
+
+							<p:dataTable id="tabPrest"
+								value="#{controllerGroupe.getPrestation(Groupe)}" var="Prest">
+								<p:column>
+							#{Prest.codeModule}
+						</p:column>
+							</p:dataTable>
 						</p:tab>
 
-						</p:accordionPanel>
-					</h:form>
+					</p:accordionPanel>
+				</h:form>
 			</p:layoutUnit>
 
 

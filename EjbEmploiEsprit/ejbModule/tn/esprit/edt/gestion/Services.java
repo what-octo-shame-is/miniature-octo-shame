@@ -12,6 +12,9 @@ import javax.persistence.EntityManager;
 
 
 
+
+import javax.persistence.Query;
+
 import tn.esprit.edt.exceptions.NonexistentEntityException;
 import tn.esprit.edt.exceptions.PreexistingEntityException;
 import tn.esprit.edt.persistance.Admin;
@@ -786,7 +789,6 @@ public class Services implements ServicesRemote {
 	public Set<Prestation> findModulesByGroupe(String codeCl) {
 		return groupeGes.findModulesByGroupe(codeCl);
 	}
-	
-	
+
 
 }

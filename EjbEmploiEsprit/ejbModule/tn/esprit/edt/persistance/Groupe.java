@@ -3,6 +3,7 @@ package tn.esprit.edt.persistance;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -21,7 +22,8 @@ import javax.persistence.Table;
 		@NamedQuery(name = "Classe.findAll", query = "SELECT g FROM Groupe g"),
 		@NamedQuery(name = "Groupe.findById", query = "SELECT g FROM Groupe g WHERE g.id = :id"),
 		@NamedQuery(name = "Groupe.findByLibelle", query = "SELECT g FROM Groupe g WHERE g.libelle = :libelle"),
-		@NamedQuery(name = "Groupe.findByEffectif", query = "SELECT g FROM Groupe g WHERE g.niveauAccees = :niveauAccees") })
+		@NamedQuery(name = "Groupe.findByEffectif", query = "SELECT g FROM Groupe g WHERE g.niveauAccees = :niveauAccees"),
+		@NamedQuery(name = "Groupe.ModulesParGroupe", query = "SELECT p FROM Prestation p WHERE p.codeCl = :id"),})
 public class Groupe implements Serializable {
 	/**
 	 * 
@@ -59,7 +61,7 @@ public class Groupe implements Serializable {
 	private Set<Creneau> creneauCollection;
 
 	@ManyToMany(mappedBy = "groupeCollection", fetch = FetchType.EAGER)
-	private Set<Prestation> prestationCollection;
+	private Set<Prestation> prestationCollection=new HashSet<Prestation>();
 	
 	/*
 	@Column(name="GROUPE_LIST")

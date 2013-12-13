@@ -30,6 +30,36 @@ public class GroupeGes implements GroupeGesLocal {
 	@PersistenceContext(unitName = "EDT_EJB")
 	EntityManager em;
 
+	@Override
+	public void updatePres() {
+		Set<Prestation> prestationCollection = null;
+		List<Prestation> prestations;
+		List<Groupe> groupes = new ArrayList<Groupe>();
+		Query query = em.createQuery("select distinct g from Groupe g");
+		groupes = query.getResultList();
+		for (Groupe groupe : groupes) {
+prestationCollection= new HashSet<Prestation>();
+			Query query2 = em
+					.createQuery("select distinct p from Prestation p where p.codeCl ="
+							+ groupe.getId());
+			prestations = query2.getResultList();
+			prestationCollection.addAll(prestations);
+			groupe.setPrestationCollection(prestationCollection);
+			em.merge(groupe);
+		}
+
+		// prestationCollection = new Set<Prestation>();
+		// for (Iterator iterator = prestationCollection.iterator();
+		// iterator.hasNext();) {
+		// Prestation prestation = (Prestation) iterator.next();
+		// Query query2 = em
+		// .createQuery("elect distinct p from Prestation p where p.codeCl ="
+		// + groupe.getId());
+		// }
+		//
+
+	}
+
 	public void create(Groupe groupe) {
 
 		em.persist(groupe);
@@ -181,91 +211,57 @@ public class GroupeGes implements GroupeGesLocal {
 
 		}
 	}
-	
-	
-	
-	 public String GetLibelleGroupeByID(String Code){
-	  		try {
-	  			String strQ = "SELECT p FROM Groupe AS p where p.id='"
-	  					+ Code + "'  ";
 
-	  			Groupe set = (Groupe) em.createQuery(strQ).getSingleResult();
-	  			return set.getLibelle();
-	  		} catch (Exception e) {
-	  		
-	  			return null;
-	  		}
-	  		
-	  	}
-	 public  Set<Prestation> ModulesParGroupe( String grp){
- 
-		 
-	
-		 String strQ = "SELECT p FROM Prestation AS p where p.codeCl='"
-					+ grp + "'  ";
-				;
-			Set<Prestation> set = new HashSet<Prestation>(em.createQuery(strQ)
-					.getResultList());
-			return set;
-		 
-		 
-		 
-				}
-				
-//			}
-		 
-	 /*
-	  * methode qui permet normalement d'avoir la liste de prestation selon groupe càd chause groupe a ses prestation
-	  */
-	 public  Set<Prestation> findModulesByGroupe(String codeCl){
-			
-		 String strQ = "SELECT e " + "FROM Prestation AS e ";
+	public String GetLibelleGroupeByID(String Code) {
+		try {
+			String strQ = "SELECT p FROM Groupe AS p where p.id='" + Code
+					+ "'  ";
 
-			if (codeCl != null)
-				strQ += "WHERE e.codeCl = :codeCl ";
-			strQ += "ORDER BY e.codeCl";
+			Groupe set = (Groupe) em.createQuery(strQ).getSingleResult();
+			return set.getLibelle();
+		} catch (Exception e) {
 
-			Query q = em.createQuery(strQ);
-			q.setHint(QueryHints.REFRESH, HintValues.TRUE);
-			if (codeCl != null)
-				q.setParameter("codeCl", codeCl);
+			return null;
+		}
 
-			Set<Prestation> set = new HashSet<Prestation>(q.getResultList());
-			for (Prestation prest : set) {
-				System.out.println("nom" + prest.getCodeModule());
-			}
-				return set;
-	 }
-		 
-		 
-		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	}
+
+	public Set<Prestation> ModulesParGroupe(String grp) {
+
+		String strQ = "SELECT p FROM Prestation AS p where p.codeCl='" + grp
+				+ "'  ";
+		;
+		Set<Prestation> set = new HashSet<Prestation>(em.createQuery(strQ)
+				.getResultList());
+		return set;
+
+	}
+
+	// }
+
+	/*
+	 * methode qui permet normalement d'avoir la liste de prestation selon
+	 * groupe càd chause groupe a ses prestation
+	 */
+	public Set<Prestation> findModulesByGroupe(String codeCl) {
+
+		String strQ = "SELECT e " + "FROM Prestation AS e ";
+
+		if (codeCl != null)
+			strQ += "WHERE e.codeCl = :codeCl ";
+		strQ += "ORDER BY e.codeCl";
+
+		Query q = em.createQuery(strQ);
+		q.setHint(QueryHints.REFRESH, HintValues.TRUE);
+		if (codeCl != null)
+			q.setParameter("codeCl", codeCl);
+
+		Set<Prestation> set = new HashSet<Prestation>(q.getResultList());
+		for (Prestation prest : set) {
+			System.out.println("nom" + prest.getCodeModule());
+		}
+		return set;
+	}
 
 	/**
 	 * Trouve les groupes dont le libellé correspond à l'expression régulière
@@ -288,7 +284,6 @@ public class GroupeGes implements GroupeGesLocal {
 
 		}
 	}
-	
 
 	/**
 	 * Récupère une liste de groupes avec leurs relations préchargées.
@@ -302,8 +297,8 @@ public class GroupeGes implements GroupeGesLocal {
 
 		try {
 			String strQ = "SELECT DISTINCT g " + "FROM Groupe AS g "
-				
-					+ "LEFT JOIN FETCH g.creneauCollection "
+
+			+ "LEFT JOIN FETCH g.creneauCollection "
 					+ "LEFT JOIN FETCH g.prestationCollection ";
 			if (idGroupe != null)
 				strQ += "WHERE g.id = :idGroupe ";
@@ -315,9 +310,9 @@ public class GroupeGes implements GroupeGesLocal {
 				q.setParameter("idGroupe", idGroupe);
 			Set<Groupe> set = new HashSet<Groupe>(q.getResultList());
 			for (Groupe groupe : set) {
-				System.out.println("nom" + groupe.getLibelle() );
+				System.out.println("nom" + groupe.getLibelle());
 			}
-		
+
 			return set;
 		} finally {
 
@@ -358,15 +353,7 @@ public class GroupeGes implements GroupeGesLocal {
 
 		Groupe gr = (Groupe) q.getResultList().get(0);
 		return gr;
-	
+
 	}
-	
-	
 
-	
-	
-	
-	
-
-	
 }

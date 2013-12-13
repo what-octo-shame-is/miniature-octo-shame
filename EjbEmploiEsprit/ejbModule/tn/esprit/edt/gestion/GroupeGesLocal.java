@@ -55,4 +55,6 @@ public interface GroupeGesLocal {
 	 public  Set<Prestation> ModulesParGroupe( String grp);
 	
 	 public  Set<Prestation> findModulesByGroupe(String codeCl);
+
+	void updatePres();
 }

@@ -297,7 +297,7 @@ public interface ServicesRemote {
 	 */
 	public  Set<Prestation> ModulesParGroupe( String grp);
 	public  Set<Prestation> findModulesByGroupe(String codeCl);
-	
+
 
 	
 }
